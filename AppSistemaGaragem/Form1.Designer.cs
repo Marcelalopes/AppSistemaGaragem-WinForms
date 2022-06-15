@@ -153,6 +153,7 @@
             this.btSaida.TabIndex = 11;
             this.btSaida.Text = "SAÍDA";
             this.btSaida.UseVisualStyleBackColor = true;
+            this.btSaida.Click += new System.EventHandler(this.btSaida_Click);
             // 
             // lblDados
             // 
