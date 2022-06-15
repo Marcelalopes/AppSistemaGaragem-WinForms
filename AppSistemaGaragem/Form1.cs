@@ -20,21 +20,12 @@ namespace AppSistemaGaragem
         List<Veiculo> listaEntrada = new List<Veiculo>();
         List<Veiculo> listaSaida = new List<Veiculo>();
 
-        private void popularTextBoxListaEntrada(List<Veiculo> lista)
-        {
-            tbListaEntrada.Text = "";
-            foreach (Veiculo i in lista)
-            {
-                tbListaEntrada.AppendText(tbPlaca.Text + " - " + dtpHora.Value + " - " + dtpData.Value + Environment.NewLine);
-            }
-        }
-
         private void btEntrada_Click(object sender, EventArgs e)
         {
             listaEntrada.Add(new Veiculo(tbPlaca.Text, dtpHora.Value, dtpData.Value));
             Persistencia.gravarNoArquivoEntrada(listaEntrada);
 
-            popularTextBoxListaEntrada(listaEntrada);
+            tbListaEntrada.AppendText(tbPlaca.Text + " - " + dtpHora.Value + " - " + dtpData.Value + Environment.NewLine);
 
             MessageBox.Show($"{tbPlaca.Text}\n{dtpHora.Value}\n{dtpData.Value}");
         }
@@ -58,7 +49,6 @@ namespace AppSistemaGaragem
 
                     listaEntrada.RemoveAt(indice);
                     Persistencia.gravarNoArquivoEntrada(listaEntrada);
-                    popularTextBoxListaEntrada(listaEntrada);
 
                     MessageBox.Show($"{tbPlaca.Text}\n{(int)i.TempoPermanencia.TotalHours} hora(s)\n{i.ValorCobrado} reais");
                     break;
