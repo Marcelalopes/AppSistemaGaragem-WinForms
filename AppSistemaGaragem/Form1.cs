@@ -15,10 +15,35 @@ namespace AppSistemaGaragem
         public Form1()
         {
             InitializeComponent();
+            
+            Persistencia.lerDoArquivoEntrada(listaEntrada);
+            popularTextBoxListaEntrada(listaEntrada);
+            
+            Persistencia.lerDoArquivoSaida(listaSaida);
+            popularTextBoxListaSaida(listaSaida);
+            
         }
 
         List<Veiculo> listaEntrada = new List<Veiculo>();
         List<Veiculo> listaSaida = new List<Veiculo>();
+
+        private void popularTextBoxListaEntrada(List<Veiculo> lista)
+        {
+            tbListaEntrada.Text = " ";
+            foreach (Veiculo i in lista)
+            {
+                tbListaEntrada.AppendText(i.Placa + " - " + i.HoraEntrada + " - " + i.DataEntrada + Environment.NewLine);
+            }
+        }
+
+        private void popularTextBoxListaSaida(List<Veiculo> lista)
+        {
+            tbListaSaida.Text = " ";
+            foreach (Veiculo i in lista)
+            {
+                tbListaSaida.AppendText(i.Placa + " - " + i.TempoPermanencia + " - " + i.ValorCobrado + Environment.NewLine);
+            }
+        }
 
         private void btEntrada_Click(object sender, EventArgs e)
         {
@@ -45,10 +70,11 @@ namespace AppSistemaGaragem
                     i.ValorCobrado = Math.Ceiling(i.TempoPermanencia.TotalMinutes/60)*5.00;
 
                     Persistencia.gravarNoArquivoSaida(listaSaida);
-                    tbListaSaida.AppendText(tbPlaca.Text + " - " + (int)i.TempoPermanencia.TotalHours + " - " + i.ValorCobrado);
+                    tbListaSaida.AppendText(tbPlaca.Text + " - " + (int)i.TempoPermanencia.TotalHours + " - " + i.ValorCobrado + Environment.NewLine);
 
                     listaEntrada.RemoveAt(indice);
                     Persistencia.gravarNoArquivoEntrada(listaEntrada);
+                    popularTextBoxListaEntrada(listaEntrada);
 
                     MessageBox.Show($"{tbPlaca.Text}\n{(int)i.TempoPermanencia.TotalHours} hora(s)\n{i.ValorCobrado} reais");
                     break;
