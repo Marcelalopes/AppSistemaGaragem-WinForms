@@ -42,7 +42,7 @@ namespace AppSistemaGaragem
 
             foreach (Veiculo i in lista)
             {
-                escritor.WriteLine(i.Placa + ";" + i.TempoPermanencia + ";" + i.ValorCobrado);
+                escritor.WriteLine(i.Placa + ";" + i.DataEntrada + ";" + i.HoraEntrada + ";" + i.HoraSaida + ";" + i.TempoPermanencia + ";" + i.ValorCobrado);
                 escritor.Flush();
             }
             escritor.Close();
@@ -58,7 +58,7 @@ namespace AppSistemaGaragem
             {
                 linha = leitor.ReadLine();
                 vetorDados = linha.Split(';');
-                lista.Add(new Veiculo(vetorDados[0], TimeSpan.Parse(vetorDados[1]), Convert.ToDouble(vetorDados[2])));
+                lista.Add(new Veiculo(vetorDados[0], DateTime.Parse(vetorDados[1]), DateTime.Parse(vetorDados[2]), DateTime.Parse(vetorDados[3]), TimeSpan.Parse(vetorDados[4]), Convert.ToDouble(vetorDados[5])));
             } while (!leitor.EndOfStream);
             leitor.Close();
         }

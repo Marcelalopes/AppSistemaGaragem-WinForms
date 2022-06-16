@@ -41,7 +41,7 @@ namespace AppSistemaGaragem
             tbListaSaida.Text = " ";
             foreach (Veiculo i in lista)
             {
-                tbListaSaida.AppendText(i.Placa + " - " + i.TempoPermanencia + " - " + i.ValorCobrado + Environment.NewLine);
+                tbListaSaida.AppendText(i.Placa + " - " + i.DataEntrada + " - " + i.HoraEntrada + " - " + i.HoraSaida + " - " + i.TempoPermanencia + " - " + i.ValorCobrado + Environment.NewLine);
             }
         }
 
@@ -79,7 +79,7 @@ namespace AppSistemaGaragem
             int indice;
             foreach (Veiculo i in listaEntrada)
             {
-                if (i.Placa.Equals(tbPlaca.Text))
+                if (Veiculo.estaNaGaragem(listaEntrada, tbPlaca.Text))
                 {
                     indice = listaEntrada.IndexOf(i);
 
@@ -89,7 +89,7 @@ namespace AppSistemaGaragem
                     i.ValorCobrado = Math.Ceiling(i.TempoPermanencia.TotalMinutes/60)*5.00;
 
                     Persistencia.gravarNoArquivoSaida(listaSaida);
-                    tbListaSaida.AppendText(tbPlaca.Text + " - " + (int)i.TempoPermanencia.TotalHours + " - " + i.ValorCobrado + Environment.NewLine);
+                    tbListaSaida.AppendText(tbPlaca.Text + " - " + i.DataEntrada + " - " + i.HoraEntrada + " - " + i.HoraSaida + " - " + (int)i.TempoPermanencia.TotalHours + " - " + i.ValorCobrado + Environment.NewLine);
 
                     listaEntrada.RemoveAt(indice);
                     Persistencia.gravarNoArquivoEntrada(listaEntrada);
@@ -100,7 +100,7 @@ namespace AppSistemaGaragem
                 }
                 else
                 {
-                    MessageBox.Show("O veículo não está na garagem!", "Alerta");
+                    MessageBox.Show("O veículo não está na garagem!","Alerta");
                     break;
                 }
             }

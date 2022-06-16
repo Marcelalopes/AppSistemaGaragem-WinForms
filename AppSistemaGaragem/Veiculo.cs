@@ -33,11 +33,17 @@ namespace AppSistemaGaragem
         /// construtor é utilizado na leitura do arquivo de veículos que vão sair da garagem
         /// </summary>
         /// <param name="placa"> identificação do veículo </param>
-        /// <param name="tempoPermanencia">tTempo que o veiculo ficou na garagem</param>
+        /// <param name="dataEntrada"> data de entrada do veículo </param>
+        /// <param name="horaEntrada"> horário que o veículo entrou na garagem </param>
+        /// <param name="horaSaida"> horário que o veículo saiu da garagem </param>
+        /// <param name="tempoPermanencia"> Tempo que o veiculo ficou na garagem</param>
         /// <param name="valorCobrado">valor cobrado pelo estacionamento</param>
-        public Veiculo(string placa, TimeSpan tempoPermanencia, double valorCobrado)
+        public Veiculo(string placa, DateTime dataEntrada, DateTime horaEntrada, DateTime horaSaida, TimeSpan tempoPermanencia, double valorCobrado)
         {
             this.placa = placa;
+            this.dataEntrada = dataEntrada;
+            this.horaEntrada = horaEntrada;
+            this.horaSaida = horaSaida;
             this.tempoPermanencia = tempoPermanencia;
             this.valorCobrado = valorCobrado;
         }
