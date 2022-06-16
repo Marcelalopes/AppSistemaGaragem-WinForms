@@ -59,6 +59,10 @@ namespace AppSistemaGaragem
             {
                 MessageBox.Show("O veículo já está na garagem!", "Alerta");
             }
+            else if (tbPlaca.Text.Length < 7 || tbPlaca.Text.Length > 7)
+            {
+                MessageBox.Show("Placa Inválida", "Alerta");
+            }
             else
             {
                 listaEntrada.Add(new Veiculo(tbPlaca.Text, dtpHora.Value, dtpData.Value));
