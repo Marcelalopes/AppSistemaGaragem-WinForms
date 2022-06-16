@@ -47,12 +47,27 @@ namespace AppSistemaGaragem
 
         private void btEntrada_Click(object sender, EventArgs e)
         {
-            listaEntrada.Add(new Veiculo(tbPlaca.Text, dtpHora.Value, dtpData.Value));
-            Persistencia.gravarNoArquivoEntrada(listaEntrada);
+            if (Validacoes.garagemFechada()) 
+            {
+                MessageBox.Show("A garagem está fechada!", "Alerta");
+            }
+            else if (!Validacoes.temVaga(listaEntrada))
+            {
+                MessageBox.Show("A garagem está cheia!", "Alerta");
+            }            
+            else if (Veiculo.estaNaGaragem(listaEntrada, tbPlaca.Text)) 
+            {
+                MessageBox.Show("O veículo já está na garagem!", "Alerta");
+            }
+            else
+            {
+                listaEntrada.Add(new Veiculo(tbPlaca.Text, dtpHora.Value, dtpData.Value));
+                Persistencia.gravarNoArquivoEntrada(listaEntrada);
 
-            tbListaEntrada.AppendText(tbPlaca.Text + " - " + dtpHora.Value + " - " + dtpData.Value + Environment.NewLine);
+                tbListaEntrada.AppendText(tbPlaca.Text + " - " + dtpHora.Value + " - " + dtpData.Value + Environment.NewLine);
 
-            MessageBox.Show($"{tbPlaca.Text}\n{dtpHora.Value}\n{dtpData.Value}");
+                MessageBox.Show($"{tbPlaca.Text}\n{dtpHora.Value}\n{dtpData.Value}");                
+            }
         }
 
         private void btSaida_Click(object sender, EventArgs e)
@@ -77,6 +92,11 @@ namespace AppSistemaGaragem
                     popularTextBoxListaEntrada(listaEntrada);
 
                     MessageBox.Show($"{tbPlaca.Text}\n{(int)i.TempoPermanencia.TotalHours} hora(s)\n{i.ValorCobrado} reais");
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("O veículo não está na garagem!", "Alerta");
                     break;
                 }
             }

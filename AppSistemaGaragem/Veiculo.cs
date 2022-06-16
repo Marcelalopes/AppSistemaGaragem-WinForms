@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AppSistemaGaragem
 {
@@ -39,6 +40,18 @@ namespace AppSistemaGaragem
             this.placa = placa;
             this.tempoPermanencia = tempoPermanencia;
             this.valorCobrado = valorCobrado;
+        }
+
+        public static bool estaNaGaragem(List<Veiculo> lista, string placa)
+        {
+            foreach (Veiculo i in lista)
+            {
+                if (i.Placa.Equals(placa))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public string Placa { get => placa; set => placa = value; }
