@@ -79,7 +79,12 @@ namespace AppSistemaGaragem
             int indice;
             foreach (Veiculo i in listaEntrada)
             {
-                if (Veiculo.estaNaGaragem(listaEntrada, tbPlaca.Text))
+                if (Validacoes.garagemFechada())
+                {
+                    MessageBox.Show("A garagem está fechada!", "Alerta");
+                    break;
+                }
+                else if (Veiculo.estaNaGaragem(listaEntrada, tbPlaca.Text))
                 {
                     indice = listaEntrada.IndexOf(i);
 
