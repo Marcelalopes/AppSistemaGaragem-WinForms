@@ -48,17 +48,6 @@ namespace AppSistemaGaragem
             this.valorCobrado = valorCobrado;
         }
 
-        public static bool estaNaGaragem(List<Veiculo> lista, string placa)
-        {
-            foreach (Veiculo i in lista)
-            {
-                if (i.Placa.Equals(placa))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
 
         public string Placa { get => placa; set => placa = value; }
         public DateTime DataEntrada { get => dataEntrada; set => dataEntrada = value; }

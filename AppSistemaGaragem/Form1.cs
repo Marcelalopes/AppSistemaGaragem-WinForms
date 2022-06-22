@@ -15,18 +15,26 @@ namespace AppSistemaGaragem
         public Form1()
         {
             InitializeComponent();
-            
+            /// <summary>
+            /// Métodos traz do arquivo e popula no textBoxList
+            /// </summary> 
             Persistencia.lerDoArquivoEntrada(listaEntrada);
-            popularTextBoxListaEntrada(listaEntrada);
-            
+            popularTextBoxListaEntrada(listaEntrada);            
             Persistencia.lerDoArquivoSaida(listaSaida);
             popularTextBoxListaSaida(listaSaida);
             
         }
 
+        /// <summary>
+        /// Listas para receber os dados para mandar para os arquivos 
+        /// </summary>
         List<Veiculo> listaEntrada = new List<Veiculo>();
         List<Veiculo> listaSaida = new List<Veiculo>();
 
+        /// <summary>
+        /// Método para popular os textBox de entrada
+        /// </summary>
+        /// <param name="lista">lista que armazena veículos de entrada</param>
         private void popularTextBoxListaEntrada(List<Veiculo> lista)
         {
             tbListaEntrada.Text = " ";
@@ -36,6 +44,10 @@ namespace AppSistemaGaragem
             }
         }
 
+        /// <summary>
+        /// Método para popular os textBox de saída
+        /// </summary>
+        /// <param name="lista">lista que armazena veículos de saida</param>
         private void popularTextBoxListaSaida(List<Veiculo> lista)
         {
             tbListaSaida.Text = " ";
@@ -55,7 +67,7 @@ namespace AppSistemaGaragem
             {
                 MessageBox.Show("A garagem está cheia!", "Alerta");
             }            
-            else if (Veiculo.estaNaGaragem(listaEntrada, tbPlaca.Text)) 
+            else if (Validacoes.estaNaGaragem(listaEntrada, tbPlaca.Text)) 
             {
                 MessageBox.Show("O veículo já está na garagem!", "Alerta");
             }
@@ -84,7 +96,7 @@ namespace AppSistemaGaragem
                     MessageBox.Show("A garagem está fechada!", "Alerta");
                     break;
                 }
-                else if (Veiculo.estaNaGaragem(listaEntrada, tbPlaca.Text))
+                else if (Validacoes.estaNaGaragem(listaEntrada, tbPlaca.Text))
                 {
                     indice = listaEntrada.IndexOf(i);
 

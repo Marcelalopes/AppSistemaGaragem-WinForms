@@ -9,6 +9,10 @@ namespace AppSistemaGaragem
 {
     class Persistencia
     {
+        /// <summary>
+        /// Método para garvar dados no arquivo
+        /// </summary>
+        /// <param name="lista">lista de veiculos de entrada</param>
         public static void gravarNoArquivoEntrada(List<Veiculo> lista)
         {
             StreamWriter escritor = new StreamWriter("VeiculosEntrada.dat");
@@ -21,6 +25,10 @@ namespace AppSistemaGaragem
             escritor.Close();
         }
 
+        /// <summary>
+        /// método para ler os dados do arquivo
+        /// </summary>
+        /// <param name="lista">lista de veiculos de entrada</param>
         public static void lerDoArquivoEntrada(List<Veiculo> lista)
         {
             StreamReader leitor = new StreamReader("VeiculosEntrada.dat");
@@ -36,6 +44,10 @@ namespace AppSistemaGaragem
             leitor.Close();
         }
 
+        /// <summary>
+        /// Método para garvar dados no arquivo
+        /// </summary>
+        /// <param name="lista">lista de veiculos de saida</param>
         public static void gravarNoArquivoSaida(List<Veiculo> lista)
         {
             StreamWriter escritor = new StreamWriter("VeiculosSaida.dat");
@@ -48,6 +60,10 @@ namespace AppSistemaGaragem
             escritor.Close();
         }
 
+        /// <summary>
+        /// método para ler os dados do arquivo
+        /// </summary>
+        /// <param name="lista">lista de veiculos de saida</param>
         public static void lerDoArquivoSaida(List<Veiculo> lista)
         {
             StreamReader leitor = new StreamReader("VeiculosSaida.dat");
